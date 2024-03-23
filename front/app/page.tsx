@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import CategoryTab from "./components/CategoryTab";
-import PaginationTab from "./components/PaginationTab";
+import Pagination from "./components/Pagination/Pagination";
 import ProductCard from "./components/ProductCard";
 import { Product } from "./types/Product";
 
@@ -14,20 +13,10 @@ function CategorySection() {
   )
 }
 
-function PaginationSection() {
-  return (
-    <div className="self-start mt-4">
-      <PaginationTab isFocus={true}>1</PaginationTab>
-      <PaginationTab isFocus={false}>2</PaginationTab>
-      <PaginationTab isFocus={false}>3</PaginationTab>
-      <PaginationTab isFocus={false}>4</PaginationTab>
-      <PaginationTab isFocus={false}>{'<'}</PaginationTab>
-      <PaginationTab isFocus={false}>{'>'}</PaginationTab>
-    </div>
-  )
-}
+
 
 const getData = async (limit: number) => {
+  
   const res = await fetch(`https://fakestoreapi.com/products?limit=${String(limit)}`)
   if (!res.ok) {
     throw new Error('Failed to get Data')
@@ -41,7 +30,7 @@ interface HomeProps {
 
 export default async function Home({searchParams}: HomeProps) {
   const page = Number(searchParams?.page) || 1
-  const limit = Number(searchParams?.limit) || 10
+  const limit = Number(searchParams?.limit) || 2 //TODO: Change to 10
   const products: Product[] = await getData(limit)
 
   return (
@@ -52,7 +41,7 @@ export default async function Home({searchParams}: HomeProps) {
           <ProductCard product={product} key={product.id}/>
         ))}
       </div>
-      <PaginationSection/>
+      <Pagination limit={limit} page={page} total={10}/> {/* HARD CODED  */}
     </div>
   );
 }
