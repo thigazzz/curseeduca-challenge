@@ -2,6 +2,29 @@ import CategoryTab from "./components/CategoryTab";
 import PaginationTab from "./components/PaginationTab";
 import ProductCard from "./components/ProductCard";
 
+function CategorySection() {
+  return (
+    <div className="w-full flex items-center mb-4">
+      <CategoryTab isFocus={true}>Todos os produtos</CategoryTab>
+      <CategoryTab isFocus={false}>Camisa</CategoryTab>
+      <CategoryTab isFocus={false}>Canecas</CategoryTab>
+    </div>
+  )
+}
+
+function PaginationSection() {
+  return (
+    <div className="self-start mt-4">
+      <PaginationTab isFocus={true}>1</PaginationTab>
+      <PaginationTab isFocus={false}>2</PaginationTab>
+      <PaginationTab isFocus={false}>3</PaginationTab>
+      <PaginationTab isFocus={false}>4</PaginationTab>
+      <PaginationTab isFocus={false}>{'<'}</PaginationTab>
+      <PaginationTab isFocus={false}>{'>'}</PaginationTab>
+    </div>
+  )
+}
+
 export default function Home() {
   const products = [
     {id: 1,title: 'Camisa', description: 'Camisa boa', src: './assets/camisa.jpeg', price: 100, link: ''},
@@ -13,24 +36,13 @@ export default function Home() {
 
   return (
     <div className="w-full h-full p-4 md:p-8 flex flex-col items-center md:justify-between">
-      <div className="w-full flex items-center mb-4">
-        <CategoryTab isFocus={true}>Todos os produtos</CategoryTab>
-        <CategoryTab isFocus={false}>Camisa</CategoryTab>
-        <CategoryTab isFocus={false}>Canecas</CategoryTab>
-      </div>
+      <CategorySection/>
       <div className="w-full h-2/4 md:h-3/4 grid gap-4 grid-cols-2 md:grid-cols-4">
         {products.map(product => (
           <ProductCard product={product} key={product.id}/>
         ))}
       </div>
-      <div className="self-start mt-4">
-        <PaginationTab isFocus={true}>1</PaginationTab>
-        <PaginationTab isFocus={false}>2</PaginationTab>
-        <PaginationTab isFocus={false}>3</PaginationTab>
-        <PaginationTab isFocus={false}>4</PaginationTab>
-        <PaginationTab isFocus={false}>{'<'}</PaginationTab>
-        <PaginationTab isFocus={false}>{'>'}</PaginationTab>
-      </div>
+      <PaginationSection/>
     </div>
   );
 }
