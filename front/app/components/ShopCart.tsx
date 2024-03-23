@@ -5,12 +5,12 @@ import { useCartStore } from "../store"
 
 export default function ShopCart() {
     const router = useRouter()
-    const toogleCartPage = useCartStore(state => state.toogleCart)
+    const {toogleCart} = useCartStore()
     const isCartPageOpen = useCartStore(state => state.isOpen)
     const amountOfProducts = 2
 
     const handleOpenCartPage = () => {
-        toogleCartPage()
+        toogleCart()
         if (!isCartPageOpen) {
             router.replace('/cart')
         } else {

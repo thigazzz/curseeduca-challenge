@@ -6,10 +6,10 @@ import { useCartStore } from "../store";
 
 export default function Cart() {
     const router = useRouter()
-    const toogleCartPage = useCartStore(state => state.toogleCart)
+    const {toogleCart} = useCartStore()
 
     const handleBackToHome = () => {
-        toogleCartPage()
+        toogleCart()
         router.replace('/')
     }
 
