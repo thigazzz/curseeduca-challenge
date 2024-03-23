@@ -1,6 +1,6 @@
 export default function SearchBar() {
     return (
-        <div className="flex items-center bg-slate-100 rounded p-1 md:p-4">
+        <div className="flex items-center w-full bg-slate-100 rounded p-1 md:p-4 ">
             <input type="text" placeholder="Pesquise por um produto" className="w-full  bg-transparent"/>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" className="ml-2 md:ml-4">
                 <path fill="none" d="M0 0h24v24H0z"/>
