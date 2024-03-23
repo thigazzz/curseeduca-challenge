@@ -7,7 +7,7 @@ import { Product } from "../types/Product";
 
 export default function Cart() {
     const router = useRouter()
-    const {cart,toogleCart} = useCartStore()
+    const {cart,toogleCart, clearCart} = useCartStore()
 
     const handleBackToHome = () => {
         toogleCart()
@@ -16,9 +16,14 @@ export default function Cart() {
 
     const sumTotal = () => {
         const sum = cart.reduce((total: number, product: Product) => {
-            return total + (product.price * product.quantity)
+            return total + (product.price * product.quantity) // TODO: Fix 2 digits price
         }, 0)
         return sum.toFixed(1)
+    }
+    const handleBuyProduct = () => {
+        alert(`Sua compra no valor de R$ ${sumTotal()} foi feita com sucesso`)
+        clearCart()
+        handleBackToHome()
     }
 
     return (
@@ -32,7 +37,7 @@ export default function Cart() {
                     <span className="text-md font-bold mb-6">RESUMO DO PEDIDO</span>
                     <span className="text-sm">Total: <strong>R$ {sumTotal()}</strong></span>
                 </div>
-                <button className="w-full p-2 bg-slate-800 text-slate-200 rounded">Finalizar compra</button>
+                <button onClick={handleBuyProduct} className="w-full p-2 bg-slate-800 text-slate-200 rounded">Finalizar compra</button>
             </div>
         </div>
     )
