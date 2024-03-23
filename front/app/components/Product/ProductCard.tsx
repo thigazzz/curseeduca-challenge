@@ -1,4 +1,5 @@
-import { Product } from "../types/Product"
+import { Product } from "../../types/Product"
+import AddToCart from "./AddToCart"
 
 interface ProductCardProps {
     product: Product
@@ -10,7 +11,10 @@ export default function ProductCard({product}: ProductCardProps) {
             <img src={product.image} alt={product.description} className="w-40 h-40 object-cover rounded"/>
             <div className="flex flex-col">
               <span className="text-gray-500 mb-1 text-sm md:text-base ">{product.title}</span>
-              <span className="font-bold text-sm md:text-base">R$ {product.price}</span>
+              <div className="flex justify-between">
+                <span className="font-bold text-sm md:text-base">R$ {product.price}</span>
+                <AddToCart product={product}/>
+              </div>
             </div>
         </div>
     )

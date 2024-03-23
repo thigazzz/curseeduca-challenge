@@ -6,7 +6,7 @@ import { useCartStore } from "../store";
 
 export default function Cart() {
     const router = useRouter()
-    const {toogleCart} = useCartStore()
+    const {cart,toogleCart} = useCartStore()
 
     const handleBackToHome = () => {
         toogleCart()
@@ -17,16 +17,7 @@ export default function Cart() {
         <div className="w-full h-full flex flex-col sm:flex-row">
             <div className="h-2/4 sm:h-full w-full sm:w-3/4 p-2 mb-4 overflow-y-scroll">
                 <button onClick={handleBackToHome} className="mb-2 w-8 h-8 bg-slate-800 text-slate-200 rounded-full">{'<'}</button>
-                <CartProductCard/>
-                <CartProductCard/>
-                <CartProductCard/>
-                <CartProductCard/>
-                <CartProductCard/>
-                <CartProductCard/>
-                <CartProductCard/>
-                <CartProductCard/>
-                <CartProductCard/>
-                <CartProductCard/>
+                {cart.map(product => <CartProductCard product={product} key={product.id}/>)}
             </div>
             <div className="w-full sm:w-1/4 sm:h-40 bg-slate-200 p-2 flex flex-col">
                 <div className="w-full flex justify-between">

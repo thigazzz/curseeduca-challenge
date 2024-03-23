@@ -5,9 +5,8 @@ import { useCartStore } from "../store"
 
 export default function ShopCart() {
     const router = useRouter()
-    const {toogleCart} = useCartStore()
+    const {toogleCart, cart} = useCartStore()
     const isCartPageOpen = useCartStore(state => state.isOpen)
-    const amountOfProducts = 2
 
     const handleOpenCartPage = () => {
         toogleCart()
@@ -26,8 +25,8 @@ export default function ShopCart() {
                 <circle cx="9" cy="19" r="2"/>
                 <circle cx="15" cy="19" r="2"/>
             </svg>
-            {amountOfProducts && (
-                <span className="p-1 bg-slate-800 rounded-full text-slate-200 text-xs">{amountOfProducts}</span>
+            {cart.length > 0 && (
+                <span className="p-1 bg-slate-800 rounded-full text-slate-200 text-xs">{cart.length}</span>
             )}
         </div>
     )

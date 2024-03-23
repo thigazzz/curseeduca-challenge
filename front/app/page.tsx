@@ -1,6 +1,6 @@
 import CategoryTab from "./components/CategoryTab";
 import Pagination from "./components/Pagination/Pagination";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "./components/Product/ProductCard";
 import { Product } from "./types/Product";
 
 function CategorySection() {
