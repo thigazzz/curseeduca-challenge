@@ -2,11 +2,16 @@
 
 import { useRouter } from "next/navigation"
 import CartProductCard from "./CartProductCard";
+import { useCartStore } from "../store";
 
 export default function Cart() {
     const router = useRouter()
+    const toogleCartPage = useCartStore(state => state.toogleCart)
 
-    const handleBackToHome = () => router.replace('/')
+    const handleBackToHome = () => {
+        toogleCartPage()
+        router.replace('/')
+    }
 
     return (
         <div className="w-full h-full flex flex-col sm:flex-row">

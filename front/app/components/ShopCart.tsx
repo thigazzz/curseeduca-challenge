@@ -1,13 +1,21 @@
 'use client'
 
 import { useRouter } from "next/navigation"
+import { useCartStore } from "../store"
 
 export default function ShopCart() {
     const router = useRouter()
+    const toogleCartPage = useCartStore(state => state.toogleCart)
+    const isCartPageOpen = useCartStore(state => state.isOpen)
     const amountOfProducts = 2
 
     const handleOpenCartPage = () => {
-        router.replace('/cart')
+        toogleCartPage()
+        if (!isCartPageOpen) {
+            router.replace('/cart')
+        } else {
+            router.replace('/')
+        }
     }
 
     return (
