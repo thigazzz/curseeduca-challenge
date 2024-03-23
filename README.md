@@ -21,5 +21,5 @@ Tanto front-end quanto back-end.
 - [ ] Catálogo de produtos com paginação
 - [ ] Filtragem de produtos por categoria
 - [ ] Busca por nome de produto
-- [ ] Adicionar e remover produtos do carrinho
+- [x] Adicionar e remover produtos do carrinho
 - [ ] Finalizar a compra (deve zerar o carrinho do usuário)
