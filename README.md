@@ -22,4 +22,4 @@ Tanto front-end quanto back-end.
 - [ ] Filtragem de produtos por categoria
 - [ ] Busca por nome de produto
 - [x] Adicionar e remover produtos do carrinho
-- [ ] Finalizar a compra (deve zerar o carrinho do usuário)
+- [x] Finalizar a compra (deve zerar o carrinho do usuário)
