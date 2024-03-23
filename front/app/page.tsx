@@ -1,4 +1,5 @@
 import CategoryTab from "./components/CategoryTab";
+import PaginationTab from "./components/PaginationTab";
 import ProductCard from "./components/ProductCard";
 
 export default function Home() {
@@ -22,8 +23,13 @@ export default function Home() {
           <ProductCard product={product} key={product.id}/>
         ))}
       </div>
-      <div>
-        paginação
+      <div className="self-start mt-4">
+        <PaginationTab isFocus={true}>1</PaginationTab>
+        <PaginationTab isFocus={false}>2</PaginationTab>
+        <PaginationTab isFocus={false}>3</PaginationTab>
+        <PaginationTab isFocus={false}>4</PaginationTab>
+        <PaginationTab isFocus={false}>{'<'}</PaginationTab>
+        <PaginationTab isFocus={false}>{'>'}</PaginationTab>
       </div>
     </div>
   );
