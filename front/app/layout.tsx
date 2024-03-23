@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header className="w-screen bg-slate-200 flex justify-around md:justify-between items-center sm:p-4">
-          <div>Capucceeno</div>
+          <div className="text-xs md:text-base">Capucceeno</div>
           <div className="flex items-center">
             <div className="mr-4">
               <SearchBar/>
