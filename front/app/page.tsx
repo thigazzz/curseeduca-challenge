@@ -27,16 +27,22 @@ function PaginationSection() {
   )
 }
 
-const getData = async () => {
-  const res = await fetch('https://fakestoreapi.com/products')
+const getData = async (limit: number) => {
+  const res = await fetch(`https://fakestoreapi.com/products?limit=${String(limit)}`)
   if (!res.ok) {
     throw new Error('Failed to get Data')
   }
   return res.json()
 }
 
-export default async function Home() {
-  const products: Product[] = await getData()
+interface HomeProps {
+  searchParams?: {page?: string, limit?: string};
+}
+
+export default async function Home({searchParams}: HomeProps) {
+  const page = Number(searchParams?.page) || 1
+  const limit = Number(searchParams?.limit) || 10
+  const products: Product[] = await getData(limit)
 
   return (
     <div className="w-full h-full p-4 md:p-8 flex flex-col items-center md:justify-between">
