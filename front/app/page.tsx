@@ -1,3 +1,4 @@
+import CategoryTab from "./components/CategoryTab";
 import ProductCard from "./components/ProductCard";
 
 export default function Home() {
@@ -11,10 +12,10 @@ export default function Home() {
 
   return (
     <div className="w-full h-full p-4 md:p-8 flex flex-col items-center md:justify-between">
-      <div className="w-full flex justify-between">
-        <p>todas</p>
-        <p>Camisa</p>
-        <p>Canecas</p>
+      <div className="w-full flex items-center mb-4">
+        <CategoryTab isFocus={true}>Todos os produtos</CategoryTab>
+        <CategoryTab isFocus={false}>Camisa</CategoryTab>
+        <CategoryTab isFocus={false}>Canecas</CategoryTab>
       </div>
       <div className="w-full h-2/4 md:h-3/4 grid gap-4 grid-cols-2 md:grid-cols-4">
         {products.map(product => (
