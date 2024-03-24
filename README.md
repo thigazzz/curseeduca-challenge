@@ -20,6 +20,6 @@ Tanto front-end quanto back-end.
 # Features
 - [ ] Catálogo de produtos com paginação
 - [ ] Filtragem de produtos por categoria
-- [ ] Busca por nome de produto
+- [x] Busca por nome de produto
 - [x] Adicionar e remover produtos do carrinho
 - [x] Finalizar a compra (deve zerar o carrinho do usuário)
