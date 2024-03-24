@@ -50,4 +50,8 @@ export class ProductService {
             where,
         });
     }
+
+    async count(): Promise<number> {
+        return this.prisma.product.count()
+    }
 }

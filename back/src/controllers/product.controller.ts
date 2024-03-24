@@ -5,20 +5,20 @@ import { ProductService } from "src/entities/product.service";
 
 @Controller()
 export class ProductController {
-    constructor(private productService: ProductService, private categoryService: CategoryService) {}
+    constructor(private productService: ProductService, private categoryService: CategoryService) { }
 
     @Post('product')
     async createProduct(
-        @Body() data: {title: string, description: string, image: string, price: number, categoryId: number}
+        @Body() data: { title: string, description: string, image: string, price: number, categoryId: number }
     ): Promise<Product> {
-        const {title, description, image, price, categoryId} = data
+        const { title, description, image, price, categoryId } = data
         return this.productService.createProduct({
             title,
             description,
             image,
             price,
             category: {
-                connect: {id: categoryId}
+                connect: { id: categoryId }
             }
         })
     }
@@ -31,10 +31,10 @@ export class ProductController {
         const skip = Number(skipQuery) || 0
         const limit = Number(limitQuery) || 10
 
-        console.log(await this.productService.products({skip: skip, take: limit}))
+        const products = await this.productService.products({ skip: skip, take: limit })
+        const count = await this.productService.count()
 
-        
-        return this.productService.products({skip: skip, take: limit})
+        return { products, count }
     }
 
     @Get('products/category/:category')
@@ -46,15 +46,15 @@ export class ProductController {
         const skip = Number(skipQuery) || 0
         const limit = Number(limitQuery) || 10
 
-        const category = await this.categoryService.categories({where: {name: categoryParam}})
-        
-         return this.productService.products({skip: skip, take: limit, where: {categoryId: category[0].id}})
-     }
+        const category = await this.categoryService.categories({ where: { name: categoryParam } })
+
+        return this.productService.products({ skip: skip, take: limit, where: { categoryId: category[0].id } })
+    }
 
     @Delete('product/:id')
     async deleteProduct(
         @Param('id') id: string
     ): Promise<Product> {
-        return this.productService.deleteProduct({id: Number(id)})
+        return this.productService.deleteProduct({ id: Number(id) })
     }
 }
