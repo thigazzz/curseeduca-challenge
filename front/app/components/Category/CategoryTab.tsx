@@ -1,20 +1,20 @@
 import Link from "next/link";
 
 interface CategoryTabProps {
-    to: string;
+    handleClick: () => void;
     isFocus: boolean;
     children: React.ReactNode;
 }
 
 
-export default function CategoryTab({ to, isFocus, children }: CategoryTabProps) {
+export default function CategoryTab({ handleClick,isFocus, children }: CategoryTabProps) {
     return (
         <>
             {isFocus ? (
-                <Link href={to} className="text-sm md:text-base font-bold mr-2 md:mr-4 cursor-pointer">{children}</Link>
+                <span onClick={handleClick} className="text-sm md:text-base font-bold mr-2 md:mr-4 cursor-pointer">{children}</span>
             )
             : (
-                <Link href={to} className="text-sm md:text-base text-gray-500 mr-2 md:mr-4 cursor-pointer">{children}</Link>
+                <span onClick={handleClick} className="text-sm md:text-base text-gray-500 mr-2 md:mr-4 cursor-pointer">{children}</span>
             )}
         </>
     )

@@ -1,8 +1,7 @@
 'use client'
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CategoryTab from "./CategoryTab";
-import Link from "next/link";
 import { useState } from "react";
 
 interface Category {
@@ -14,6 +13,7 @@ interface Category {
 export default function Category() {
     const pathName = usePathname()
     const searchParams = useSearchParams()
+    const router = useRouter()
 
     const [categories, setCategories] = useState<Category[]>([
         {to: '', title: 'Todos os Produtos', isFocus: true},
@@ -34,10 +34,24 @@ export default function Category() {
         return url
     }
 
+    const handleClick = (title: string, to: string) => {
+        const url = to !== "" ? makeURL(to) : clearUrl()
+        handleTabFocus(title)
+        router.replace(url)
+    }
+
+    const handleTabFocus = (title: string) => {
+        const copy_categories = categories.map(category => {
+            if (category.title === title) return ({...category, isFocus: true})
+            return {...category, isFocus: false}
+        })
+        setCategories(copy_categories)
+    }
+
     return (
       <div className="w-full flex items-center mb-4">
         {categories.map(category => (
-            <CategoryTab to={category.to !== "" ? makeURL(category.to) : clearUrl()} isFocus={category.isFocus}>{category.title}</CategoryTab>
+            <CategoryTab handleClick={() => handleClick(category.title, category.to)} isFocus={category.isFocus} key={category.title}>{category.title}</CategoryTab>
         ))}
       </div>
     )
