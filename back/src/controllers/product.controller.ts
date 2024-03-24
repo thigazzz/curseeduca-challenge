@@ -23,7 +23,7 @@ export class ProductController {
     }
 
     @Get('products')
-    async listCategories(
+    async listProducts(
         @Query('skip') skipQuery?: string,
         @Query('limit') limitQuery?: string,
     ): Promise<Product[]> {
