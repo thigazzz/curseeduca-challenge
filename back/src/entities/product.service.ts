@@ -22,7 +22,7 @@ export class ProductService {
         cursor?: Prisma.ProductWhereUniqueInput;
         where?: Prisma.ProductWhereInput;
         orderBy?: Prisma.ProductOrderByWithRelationInput;
-    }): Promise<Product[]> {
+    }) {
         const { skip, take, cursor, where, orderBy } = params
         const page = Number(skip) * Number(take)
         return this.prisma.product.findMany({
