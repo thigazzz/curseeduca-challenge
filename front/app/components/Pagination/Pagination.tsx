@@ -36,7 +36,6 @@ export default function Pagination({page,limit,total}: PaginationSectionProps) {
             <PaginationTab to={makeURL(page)} isFocus={isCurrentPage(page)} key={page}>{page}</PaginationTab>
         )
     })}
-        <span>Pequeno Bug</span>
       </div>
     )
   }

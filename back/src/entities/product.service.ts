@@ -54,4 +54,8 @@ export class ProductService {
     async count(): Promise<number> {
         return this.prisma.product.count()
     }
+
+    async getCountOfProductsByCategory(categoryId: number) {
+        return this.prisma.product.count({where: {categoryId: categoryId}})
+    }
 }

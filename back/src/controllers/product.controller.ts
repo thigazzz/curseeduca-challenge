@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, Query } from "@nestjs/common";
+import { Controller, Get, Post, Delete, Body, Param, Query } from "@nestjs/common";
 import { Product } from "@prisma/client";
 import { CategoryService } from "src/entities/category.service";
 import { ProductService } from "src/entities/product.service";
@@ -42,13 +42,17 @@ export class ProductController {
         @Param('category') categoryParam: string,
         @Query('skip') skipQuery?: string,
         @Query('limit') limitQuery?: string,
-    ): Promise<Product[]> {
+    ) {
         const skip = Number(skipQuery) || 0
         const limit = Number(limitQuery) || 10
 
         const category = await this.categoryService.categories({ where: { name: categoryParam } })
 
-        return this.productService.products({ skip: skip, take: limit, where: { categoryId: category[0].id } })
+        const products = await this.productService.products({ skip: skip, take: limit, where: { categoryId: category[0].id } })
+        const count = await this.productService.getCountOfProductsByCategory(category[0].id)
+
+
+        return { products, count }
     }
 
     @Delete('product/:id')

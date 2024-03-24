@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import CategoryTab from "./CategoryTab";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Category {
     to: string;
@@ -17,9 +17,17 @@ export default function Category() {
 
     const [categories, setCategories] = useState<Category[]>([
         {to: '', title: 'Todos os Produtos', isFocus: true},
-        {to: "men's clothing", title: 'Homem', isFocus: false},
-        {to: "electronics", title: 'Eletronicos', isFocus: false},
+        {to: "copos", title: 'copos', isFocus: false},
+        {to: "camisas", title: 'camisas', isFocus: false},
     ])
+
+    useEffect(() => {
+        const param = searchParams.get('category')
+
+        if (param) {
+            handleTabFocus(param)
+        }
+    }, [])
 
     const makeURL = (category: string) => {
         const params = new URLSearchParams(searchParams)
