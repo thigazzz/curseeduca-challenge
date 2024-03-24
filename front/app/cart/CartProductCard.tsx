@@ -1,7 +1,7 @@
 'use client'
 
-import AddToCart from "../components/Product/AddToCart"
 import { useCartStore } from "../store";
+import AddToCart from "../components/Cart/AddToCart"
 import { Product } from "../types/Product"
 
 interface CartProductCardProps {
@@ -10,6 +10,7 @@ interface CartProductCardProps {
 
 export default function CartProductCard({product}: CartProductCardProps) {
     const {removeOfCart} = useCartStore()
+
     return (
         <div className="w-full flex mb-2 p-2 bg-slate-200 rounded">
             <div className="w-1/2">

@@ -1,11 +1,8 @@
-import Link from "next/link";
-
 interface CategoryTabProps {
     handleClick: () => void;
     isFocus: boolean;
     children: React.ReactNode;
 }
-
 
 export default function CategoryTab({ handleClick,isFocus, children }: CategoryTabProps) {
     return (

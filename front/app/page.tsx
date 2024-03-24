@@ -1,7 +1,7 @@
 import Category from "./components/Category/Category";
 import Pagination from "./components/Pagination/Pagination";
 import ProductCard from "./components/Product/ProductCard";
-import { getData } from "./lib/api";
+import { getProducts } from "./lib/api";
 import { Product } from "./types/Product";
 
 interface HomeProps {
@@ -9,12 +9,11 @@ interface HomeProps {
 }
 
 export default async function Home({searchParams}: HomeProps) {
-  const page = Number(searchParams?.page) || 1
-  const limit = Number(searchParams?.limit) || 1 // Se setar 10, a aplicação quebra TODO: se der tempo ver o por que
-  const category = searchParams?.category || undefined
+   const page = Number(searchParams?.page) || 1
+   const limit = Number(searchParams?.limit) || 1 // Se setar 10, a aplicação quebra TODO: se der tempo ver o por que
+   const category = searchParams?.category || undefined
 
-  const {products, count}: {products: Product[], count: number} = await getData(page, limit, category)
-  console.log(count)
+  const {products, count}: {products: Product[], count: number} = await getProducts(page, limit, category)
 
   return (
     <div className="w-full h-full p-4 md:p-8 flex flex-col items-center md:justify-between">

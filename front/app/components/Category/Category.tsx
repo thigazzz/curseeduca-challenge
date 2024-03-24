@@ -1,14 +1,10 @@
 'use client'
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import CategoryTab from "./CategoryTab";
 import { useEffect, useState } from "react";
 
-interface Category {
-    to: string;
-    title: string;
-    isFocus: boolean
-}
+import CategoryTab from "./CategoryTab";
+import { Category } from "@/app/types/Category";
 
 export default function Category() {
     const pathName = usePathname()
@@ -58,6 +54,7 @@ export default function Category() {
 
     return (
       <div className="w-full flex items-center mb-4">
+        <span>Arrumar</span>
         {categories.map(category => (
             <CategoryTab handleClick={() => handleClick(category.title, category.to)} isFocus={category.isFocus} key={category.title}>{category.title}</CategoryTab>
         ))}

@@ -1,7 +1,7 @@
 'use client'
 import { usePathname, useSearchParams } from "next/navigation";
+import { ELLIPSIS_LEFT, ELLIPSIS_RIGTH, usePagination } from "../../hooks/usePagination";
 import PaginationTab from "./PaginationTab";
-import { ELLIPSIS_LEFT, ELLIPSIS_RIGTH, usePagination } from "./usePagination";
 
 interface PaginationSectionProps {
     page: number;
@@ -20,11 +20,13 @@ export default function Pagination({page,limit,total}: PaginationSectionProps) {
         const url = `${pathName}?${params.toString()}`
         return url
     }
-
+    
     return (
-      <div className="self-start mt-4">
+        <div className="self-start mt-4">
         {pages.map(page => {
-        const isEllpsis = page === ELLIPSIS_LEFT || page === ELLIPSIS_RIGTH
+            const isEllpsis = page === ELLIPSIS_LEFT || page === ELLIPSIS_RIGTH
+            
+            const url = makeURL(page)
         
         if (isEllpsis) {
             return (
@@ -33,7 +35,7 @@ export default function Pagination({page,limit,total}: PaginationSectionProps) {
         }
 
         return (
-            <PaginationTab to={makeURL(page)} isFocus={isCurrentPage(page)} key={page}>{page}</PaginationTab>
+            <PaginationTab to={url} isFocus={isCurrentPage(page)} key={page}>{page}</PaginationTab>
         )
     })}
       </div>

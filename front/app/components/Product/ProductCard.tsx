@@ -1,5 +1,5 @@
 import { Product } from "../../types/Product"
-import AddToCart from "./AddToCart"
+import AddToCart from "../Cart/AddToCart"
 
 interface ProductCardProps {
     product: Product

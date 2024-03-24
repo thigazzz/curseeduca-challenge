@@ -6,20 +6,22 @@ import { useCartStore } from "../store";
 import { Product } from "../types/Product";
 
 export default function Cart() {
+    const {cart, toogleCart, clearCart} = useCartStore()
     const router = useRouter()
-    const {cart,toogleCart, clearCart} = useCartStore()
 
-    const handleBackToHome = () => {
-        toogleCart()
-        router.replace('/')
-    }
-
+    
     const sumTotal = () => {
         const sum = cart.reduce((total: number, product: Product) => {
             return total + (product.price * product.quantity) // TODO: Fix 2 digits price
         }, 0)
         return sum.toFixed(1)
     }
+
+    const handleBackToHome = () => {
+        toogleCart()
+        router.replace('/')
+    }
+
     const handleBuyProduct = () => {
         alert(`Sua compra no valor de R$ ${sumTotal()} foi feita com sucesso`)
         clearCart()
