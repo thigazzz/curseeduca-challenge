@@ -6,15 +6,23 @@ import { useEffect, useState } from "react";
 import CategoryTab from "./CategoryTab";
 import { Category } from "@/app/types/Category";
 
-export default function Category() {
+interface CategoryProps {
+    categoriesProps: {id: number, name: string}[]
+}
+
+
+export default function CategorySection({categoriesProps}: CategoryProps) {
     const pathName = usePathname()
     const searchParams = useSearchParams()
     const router = useRouter()
 
+    const formatCategoriesProps = (): Category[] => {
+        return categoriesProps.map(category => ({title: category.name.charAt(0).toUpperCase() + category.name.slice(1), to: category.name, isFocus: false}))
+    }
+
     const [categories, setCategories] = useState<Category[]>([
         {to: '', title: 'Todos os Produtos', isFocus: true},
-        {to: "copos", title: 'copos', isFocus: false},
-        {to: "camisas", title: 'camisas', isFocus: false},
+        ...formatCategoriesProps()
     ])
 
     useEffect(() => {
@@ -54,7 +62,6 @@ export default function Category() {
 
     return (
       <div className="w-full flex items-center mb-4">
-        <span>Arrumar</span>
         {categories.map(category => (
             <CategoryTab handleClick={() => handleClick(category.title, category.to)} isFocus={category.isFocus} key={category.title}>{category.title}</CategoryTab>
         ))}

@@ -13,3 +13,15 @@ export const getProducts = async (page: number, limit: number, category?: string
 
     return res.json()
 }
+
+export const getCategories = async () => {
+  noStore();
+  const endPoint = 'http://localhost:3001/categories'
+  const res = await fetch(endPoint)
+
+  if (!res.ok) {
+      throw new Error('Failed to get Data')
+  }
+
+  return res.json()
+}
