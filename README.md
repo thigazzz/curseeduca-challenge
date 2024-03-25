@@ -15,7 +15,7 @@ npm install
 Setup database and Prisma
 ```bash
 cp prisma/.env.example .env
-npx prisma migrate dev
+npx prisma migrate dev --name init
 ```
 Run application
 ```bash
