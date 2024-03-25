@@ -9,6 +9,7 @@ git clone https://github.com/thigazzz/curseeduca-challenge.git
 ```
 Move to backend folder
 ```bash
+cd curseeduca-challenge/
 cd back
 npm install
 ```
